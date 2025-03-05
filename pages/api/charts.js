@@ -9,25 +9,51 @@ export default async function handler(req, res) {
       // Calculate the start date (today - number of days)
       const startDate = new Date();
       startDate.setDate(startDate.getDate() - days);
-
       const data = await db.FactAdMetricsDaily.findAll({
         where: {
           createdAt: {
-            [Op.gte]: startDate, // Filter records created on or after the start date
+            [Op.gte]: startDate,
           },
         },
         include: [
-          { model: db.DimDate, as: "date" },
-          { model: db.DimRegion, as: "region" },
-          { model: db.DimAgeGroup, as: "ageGroup" },
-          { model: db.DimGender, as: "gender" },
-          { model: db.DimPlatform, as: "platform" },
-          { model: db.DimPlacement, as: "placement" },
-          { model: db.DimDeviceType, as: "deviceType" },
+          {
+            model: db.DimDate,
+            as: "date",
+            attributes: ["date_id", "date_value"],
+          },
+          {
+            model: db.DimRegion,
+            as: "region",
+            attributes: ["region_id", "region_name"],
+          },
+          {
+            model: db.DimAgeGroup,
+            as: "ageGroup",
+            attributes: ["age_id", "age_range"],
+          },
+          {
+            model: db.DimGender,
+            as: "gender",
+            attributes: ["gender_id", "gender_name"],
+          },
+          {
+            model: db.DimPlatform,
+            as: "platform",
+            attributes: ["platform_id", "platform_name"],
+          },
+          {
+            model: db.DimPlacement,
+            as: "placement",
+            attributes: ["placement_id", "placement_name"],
+          },
+          {
+            model: db.DimDeviceType,
+            as: "deviceType",
+            attributes: ["device_type_id", "device_type_name"],
+          },
         ],
       });
 
-      // Return the fetched data as a JSON response
       return res.status(200).json({status:200,data:data});
 
     } return res.status(405).json({ message: 'Method not allowed' });

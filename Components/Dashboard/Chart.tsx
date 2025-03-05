@@ -13,7 +13,7 @@ const Chart = ({type,data}:any) => {
               <LineChart width={900} height={500} data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="region_name" padding={{ left: 30, right: 30 }} />
-                <YAxis domain={[0, 1000]} />
+                <YAxis domain={[0, 4000]} />
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="CPM" stroke="#8884d8" activeDot={{ r: 8 }} />
@@ -25,7 +25,7 @@ const Chart = ({type,data}:any) => {
               <LineChart width={900} height={500} data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="ageRange" padding={{ left: 30, right: 30 }} />
-                <YAxis domain={[0, 5000]} />
+                <YAxis domain={[0, 15000]} />
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="Likes" stroke="#8884d8" activeDot={{ r: 8 }} />

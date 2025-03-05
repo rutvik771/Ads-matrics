@@ -95,13 +95,10 @@ const Dashboard = () => {
         })));
         break;
       default:
-        // Default: Show raw data
         setProcessedData(data);
         break;
     }
   };
-  console.log(data, '-------')
-  console.log(processedData, '-------')
   return (
     <>
       {isLoading && processedData ? (
